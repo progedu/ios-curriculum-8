@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1EA627C42393F45900432E24 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA627C32393F45900432E24 /* CheckBox.swift */; };
 		1EA627C62393F4AE00432E24 /* TodoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA627C52393F4AE00432E24 /* TodoListTableViewController.swift */; };
+		1EA627C82393FB5000432E24 /* MessageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA627C72393FB5000432E24 /* MessageCollectionViewController.swift */; };
 		4E9B545C2136CE87B17E5332 /* Pods_TodoLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74FE62FDC4A7FCEB516F5CE /* Pods_TodoLogTests.framework */; };
 		59701B40C673B968899641BC /* Pods_TodoLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0609E029DD2BD22FFC55E2EA /* Pods_TodoLog.framework */; };
 		71C512C613F8884F76BE9569 /* Pods_TodoLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C0ECE59B78693F32914500 /* Pods_TodoLogUITests.framework */; };
@@ -42,6 +43,7 @@
 		0609E029DD2BD22FFC55E2EA /* Pods_TodoLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EA627C32393F45900432E24 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		1EA627C52393F4AE00432E24 /* TodoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewController.swift; sourceTree = "<group>"; };
+		1EA627C72393FB5000432E24 /* MessageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewController.swift; sourceTree = "<group>"; };
 		487CE57D1D6A1E1CDB4EAAAC /* Pods-TodoLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoLogUITests.release.xcconfig"; path = "Target Support Files/Pods-TodoLogUITests/Pods-TodoLogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4ED3FCB8DB1AA5FB0C6AB697 /* Pods-TodoLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoLogUITests.debug.xcconfig"; path = "Target Support Files/Pods-TodoLogUITests/Pods-TodoLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C62B670F2B645CE420F23584 /* Pods-TodoLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoLog.debug.xcconfig"; path = "Target Support Files/Pods-TodoLog/Pods-TodoLog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				ED6DA2B022B709D900015564 /* AppDelegate.swift */,
 				1EA627C52393F4AE00432E24 /* TodoListTableViewController.swift */,
+				1EA627C72393FB5000432E24 /* MessageCollectionViewController.swift */,
 				1EA627C32393F45900432E24 /* CheckBox.swift */,
 				ED6DA2B422B709DA00015564 /* Main.storyboard */,
 				ED6DA2B722B709DB00015564 /* Assets.xcassets */,
@@ -390,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EA627C82393FB5000432E24 /* MessageCollectionViewController.swift in Sources */,
 				ED6DA2B122B709DA00015564 /* AppDelegate.swift in Sources */,
 				1EA627C42393F45900432E24 /* CheckBox.swift in Sources */,
 				1EA627C62393F4AE00432E24 /* TodoListTableViewController.swift in Sources */,
