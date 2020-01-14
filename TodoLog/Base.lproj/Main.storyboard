@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9CM-uE-tVG" customClass="TodoCell" customModule="TodoLog" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9CM-uE-tVG" customClass="TodoTableViewCell" customModule="TodoLog" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9CM-uE-tVG" id="YPH-qd-eci">
@@ -61,6 +61,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="caption" destination="Y1s-5U-aFB" id="rYA-Jq-RIa"/>
+                                    <outlet property="checkBox" destination="8Td-fp-HaR" id="4Ut-8V-boT"/>
+                                    <outlet property="title" destination="737-8d-107" id="uWA-sb-doG"/>
                                     <segue destination="m4e-b8-mHz" kind="show" id="tAh-dN-iRN"/>
                                 </connections>
                             </tableViewCell>
@@ -91,7 +94,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hji-CN-EYB">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hji-CN-EYB" customClass="MessageCollectionViewCell" customModule="TodoLog" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mwy-vb-WlB">
@@ -121,6 +124,9 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="414" height="155"/>
+                                <connections>
+                                    <outlet property="message" destination="CHz-fS-nQk" id="Gwi-CY-nc1"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
