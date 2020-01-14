@@ -10,6 +10,33 @@ import UIKit
 
 class TodoListTableViewController: UITableViewController {
 
+    let todoList = [
+        Todo(
+            title: "カレーの買い物",
+            createdAt: Date() - 30*60, // 30分前
+            locationInfo: "スーパー",
+            done: false
+        ),
+        Todo(
+            title: "定期券の更新",
+            createdAt: Date() - 2*24*60*60, // 2日前
+            locationInfo: "最寄駅",
+            done: true
+        ),
+        Todo(
+            title: "新幹線の予約",
+            createdAt: Date() - 2*24*60*60, // 2日前
+            locationInfo: "東京駅",
+            done: false
+        ),
+        Todo(
+            title: "メールを返す",
+            createdAt: Date() - 4*24*60*60, // 4日前
+            locationInfo: "自宅",
+            done: false
+        )
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,17 +54,15 @@ class TodoListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return todoList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        // TODO: ラベルに値を入れる
-
+        // swiftlint:disable:next force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TodoTableViewCell
+        cell.configureCell(todo: todoList[indexPath.row])
         return cell
     }
-
 
     /*
     // Override to support conditional editing of the table view.

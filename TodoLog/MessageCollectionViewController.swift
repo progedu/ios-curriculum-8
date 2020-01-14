@@ -11,6 +11,16 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class MessageCollectionViewController: UICollectionViewController {
+    let messageList = [
+        Chat(message: "買い物、忘れないように", createdAt: Date()),
+        Chat(message: "カレーを作るから、鶏肉と玉ねぎ、それと人参", createdAt: Date()),
+        Chat(message: "ジャガイモとルーは家に余っているから大丈夫", createdAt: Date()),
+        Chat(message: "ついでに洗剤も買ってきてね〜", createdAt: Date()),
+        Chat(message: "人参もらったからいらなくなった！", createdAt: Date()),
+        Chat(message: "買うものは、鶏肉、玉ねぎ", createdAt: Date()),
+        Chat(message: "あとは洗剤！", createdAt: Date()),
+        Chat(message: "食器洗いの洗剤ね！", createdAt: Date())
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +48,13 @@ class MessageCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return messageList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-
-        // Configure the cell
-
+        // swiftlint:disable:next force_cast
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCollectionViewCell
+        cell.configureCell(chat: messageList[indexPath.row])
         return cell
     }
 
