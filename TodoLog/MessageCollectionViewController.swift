@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class MessageCollectionViewController: UICollectionViewController {
-    let messageList = [
+    var messageList = [
         Chat(message: "買い物、忘れないように", createdAt: Date()),
         Chat(message: "カレーを作るから、鶏肉と玉ねぎ、それと人参", createdAt: Date()),
         Chat(message: "ジャガイモとルーは家に余っているから大丈夫", createdAt: Date()),
@@ -21,6 +21,26 @@ class MessageCollectionViewController: UICollectionViewController {
         Chat(message: "あとは洗剤！", createdAt: Date()),
         Chat(message: "食器洗いの洗剤ね！", createdAt: Date())
     ]
+
+    lazy var textInputView: TextInputView! = {
+        // swiftlint:disable:next force_cast
+        let inputView = Bundle.main.loadNibNamed("TextInputView", owner: self, options: nil)?.first as! TextInputView
+        inputView.messageSentCallback = { [weak self] message in
+            guard let self = self else { return }
+            let indexPath = IndexPath(row: self.messageList.count, section: 0)
+            self.messageList.append(Chat(message: message, createdAt: Date()))
+            self.collectionView.insertItems(at: [indexPath])
+        }
+        return inputView
+    }()
+
+    override var inputAccessoryView: UIView? {
+        return textInputView
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

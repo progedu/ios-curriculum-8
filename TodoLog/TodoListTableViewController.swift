@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListTableViewController: UITableViewController {
 
-    let todoList = [
+    var todoList = [
         Todo(
             title: "カレーの買い物",
             createdAt: Date() - 30*60, // 30分前
@@ -45,6 +45,30 @@ class TodoListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "TODO登録", message: "TODO のタイトルと行う場所を入力してください。", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "タイトル(例: 買い物)"
+        }
+        alert.addTextField { textField in
+            textField.placeholder = "場所(例: スーパー)"
+        }
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "登録", style: .default, handler: { [weak alert] _ in
+            if let todoTitle = alert?.textFields?[0].text,
+                let locationInfo = alert?.textFields?[1].text {
+                self.addTodo(title: todoTitle, locationInfo: locationInfo)
+            }
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
+    func addTodo(title: String, locationInfo: String) {
+        let todo = Todo(title: title, createdAt: Date(), locationInfo: locationInfo, done: false)
+        todoList.insert(todo, at: 0)
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
 
     // MARK: - Table view data source

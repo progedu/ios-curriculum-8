@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E4C707B241E7A010031133B /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C707A241E7A010031133B /* TextInputView.swift */; };
+		1E4C707D241E7A4C0031133B /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E4C707C241E7A4C0031133B /* TextInputView.xib */; };
 		1EA627C42393F45900432E24 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA627C32393F45900432E24 /* CheckBox.swift */; };
 		1EA627C62393F4AE00432E24 /* TodoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA627C52393F4AE00432E24 /* TodoListTableViewController.swift */; };
 		1EA627C82393FB5000432E24 /* MessageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA627C72393FB5000432E24 /* MessageCollectionViewController.swift */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		03708BE5F3DBF58ECEF592E6 /* Pods-TodoLogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoLogTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoLogTests/Pods-TodoLogTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0609E029DD2BD22FFC55E2EA /* Pods_TodoLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E4C707A241E7A010031133B /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		1E4C707C241E7A4C0031133B /* TextInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		1EA627C32393F45900432E24 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		1EA627C52393F4AE00432E24 /* TodoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewController.swift; sourceTree = "<group>"; };
 		1EA627C72393FB5000432E24 /* MessageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				1EA627C72393FB5000432E24 /* MessageCollectionViewController.swift */,
 				1EA627C32393F45900432E24 /* CheckBox.swift */,
 				1EB417D923CC2B8B0038872F /* Todo.swift */,
+				1E4C707A241E7A010031133B /* TextInputView.swift */,
+				1E4C707C241E7A4C0031133B /* TextInputView.xib */,
 				ED6DA2B422B709DA00015564 /* Main.storyboard */,
 				ED6DA2B722B709DB00015564 /* Assets.xcassets */,
 				ED6DA2B922B709DB00015564 /* LaunchScreen.storyboard */,
@@ -293,6 +299,7 @@
 			files = (
 				ED6DA2BB22B709DB00015564 /* LaunchScreen.storyboard in Resources */,
 				ED6DA2B822B709DB00015564 /* Assets.xcassets in Resources */,
+				1E4C707D241E7A4C0031133B /* TextInputView.xib in Resources */,
 				ED6DA2B622B709DA00015564 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +420,7 @@
 				1EA627C42393F45900432E24 /* CheckBox.swift in Sources */,
 				1EB417E023CD3F750038872F /* MessageCollectionViewCell.swift in Sources */,
 				1EA627C62393F4AE00432E24 /* TodoListTableViewController.swift in Sources */,
+				1E4C707B241E7A010031133B /* TextInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
