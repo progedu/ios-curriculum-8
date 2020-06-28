@@ -11,8 +11,8 @@ import CoreData
 
 class TodoListTableViewController: UITableViewController {
 
-    var todoList: [Todo] = []
     var managedObjectContext: NSManagedObjectContext!
+    var fetchedResultsController: NSFetchedResultsController<Todo>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,10 @@ class TodoListTableViewController: UITableViewController {
 
         let fetchRequest: NSFetchRequest<Todo>  = Todo.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
-        if let todoList = try? managedObjectContext.fetch(fetchRequest) {
-            self.todoList = todoList
-        }
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        try? fetchedResultsController.performFetch()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -57,25 +58,23 @@ class TodoListTableViewController: UITableViewController {
         todo.locationInfo = locationInfo
         todo.done = false
         try? managedObjectContext.save()
-
-        todoList.insert(todo, at: 0)
-        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultsController.sections!.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoList.count
+        return fetchedResultsController.sections![section].numberOfObjects
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TodoTableViewCell
-        cell.configureCell(todo: todoList[indexPath.row])
+        let todo = fetchedResultsController.object(at: indexPath)
+        cell.configureCell(todo: todo)
         return cell
     }
 
@@ -124,4 +123,29 @@ class TodoListTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension TodoListTableViewController: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .automatic)
+        @unknown default:
+            break
+        }
+    }
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 }
