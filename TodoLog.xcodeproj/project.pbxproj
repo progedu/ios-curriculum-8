@@ -25,6 +25,7 @@
 		ED6DA2BB22B709DB00015564 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6DA2B922B709DB00015564 /* LaunchScreen.storyboard */; };
 		ED6DA2C622B709DB00015564 /* TodoLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DA2C522B709DB00015564 /* TodoLogTests.swift */; };
 		ED6DA2D122B709DB00015564 /* TodoLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DA2D022B709DB00015564 /* TodoLogUITests.swift */; };
+		ED99C50F24A9A8CA002E6246 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED99C50D24A9A8CA002E6246 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		ED6DA2CC22B709DB00015564 /* TodoLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6DA2D022B709DB00015564 /* TodoLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLogUITests.swift; sourceTree = "<group>"; };
 		ED6DA2D222B709DB00015564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED99C50E24A9A8CA002E6246 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F39DCBDE644D5C6D2FA2BD77 /* Pods-TodoLogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoLogTests.release.xcconfig"; path = "Target Support Files/Pods-TodoLogTests/Pods-TodoLogTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				1E4C707A241E7A010031133B /* TextInputView.swift */,
 				1E4C707C241E7A4C0031133B /* TextInputView.xib */,
 				ED6DA2B422B709DA00015564 /* Main.storyboard */,
+				ED99C50D24A9A8CA002E6246 /* Model.xcdatamodeld */,
 				ED6DA2B722B709DB00015564 /* Assets.xcassets */,
 				ED6DA2B922B709DB00015564 /* LaunchScreen.storyboard */,
 				ED6DA2BC22B709DB00015564 /* Info.plist */,
@@ -419,6 +422,7 @@
 				1EB417DC23CD33EE0038872F /* TodoTableViewCell.swift in Sources */,
 				1EA627C42393F45900432E24 /* CheckBox.swift in Sources */,
 				1EB417E023CD3F750038872F /* MessageCollectionViewCell.swift in Sources */,
+				ED99C50F24A9A8CA002E6246 /* Model.xcdatamodeld in Sources */,
 				1EA627C62393F4AE00432E24 /* TodoListTableViewController.swift in Sources */,
 				1E4C707B241E7A010031133B /* TextInputView.swift in Sources */,
 			);
@@ -749,6 +753,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED99C50D24A9A8CA002E6246 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED99C50E24A9A8CA002E6246 /* Model.xcdatamodel */,
+			);
+			currentVersion = ED99C50E24A9A8CA002E6246 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ED6DA2A522B709D900015564 /* Project object */;
 }

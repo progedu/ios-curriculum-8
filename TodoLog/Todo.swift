@@ -8,12 +8,7 @@
 
 import Foundation
 
-struct Todo {
-    let title: String
-    let createdAt: Date
-    let locationInfo: String
-    let done: Bool
-
+extension Todo {
     var caption: String {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
@@ -21,7 +16,7 @@ struct Todo {
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
         formatter.calendar?.locale = Locale(identifier: "ja_JP")
 
-        let date = "\(formatter.string(from: createdAt, to: Date())!)前"
-        return "\(date)・\(locationInfo)"
+        let date = "\(formatter.string(from: createdAt!, to: Date())!)前"
+        return "\(date)・\(locationInfo!)"
     }
 }
