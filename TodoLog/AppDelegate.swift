@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,4 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // MARK: - Core Data stack
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Model")
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 }

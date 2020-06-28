@@ -7,38 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListTableViewController: UITableViewController {
 
-    var todoList = [
-        Todo(
-            title: "カレーの買い物",
-            createdAt: Date() - 30*60, // 30分前
-            locationInfo: "スーパー",
-            done: false
-        ),
-        Todo(
-            title: "定期券の更新",
-            createdAt: Date() - 2*24*60*60, // 2日前
-            locationInfo: "最寄駅",
-            done: true
-        ),
-        Todo(
-            title: "新幹線の予約",
-            createdAt: Date() - 2*24*60*60, // 2日前
-            locationInfo: "東京駅",
-            done: false
-        ),
-        Todo(
-            title: "メールを返す",
-            createdAt: Date() - 4*24*60*60, // 4日前
-            locationInfo: "自宅",
-            done: false
-        )
-    ]
+    var todoList: [Todo] = []
+    var managedObjectContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Todo>  = Todo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        if let todoList = try? managedObjectContext.fetch(fetchRequest) {
+            self.todoList = todoList
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,7 +51,13 @@ class TodoListTableViewController: UITableViewController {
     }
 
     func addTodo(title: String, locationInfo: String) {
-        let todo = Todo(title: title, createdAt: Date(), locationInfo: locationInfo, done: false)
+        let todo = Todo(context: managedObjectContext)
+        todo.title = title
+        todo.createdAt = Date()
+        todo.locationInfo = locationInfo
+        todo.done = false
+        try? managedObjectContext.save()
+
         todoList.insert(todo, at: 0)
         tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
