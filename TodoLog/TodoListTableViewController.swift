@@ -116,15 +116,17 @@ class TodoListTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Message" {
+            // swiftlint:disable:next force_cast
+            let destination = segue.destination as! MessageCollectionViewController
+            let selectedTodo = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
+            destination.todo = selectedTodo
+        }
     }
-    */
 
 }
 

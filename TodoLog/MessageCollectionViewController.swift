@@ -7,29 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "Cell"
 
 class MessageCollectionViewController: UICollectionViewController {
-    var messageList = [
-        Chat(message: "買い物、忘れないように", createdAt: Date()),
-        Chat(message: "カレーを作るから、鶏肉と玉ねぎ、それと人参", createdAt: Date()),
-        Chat(message: "ジャガイモとルーは家に余っているから大丈夫", createdAt: Date()),
-        Chat(message: "ついでに洗剤も買ってきてね〜", createdAt: Date()),
-        Chat(message: "人参もらったからいらなくなった！", createdAt: Date()),
-        Chat(message: "買うものは、鶏肉、玉ねぎ", createdAt: Date()),
-        Chat(message: "あとは洗剤！", createdAt: Date()),
-        Chat(message: "食器洗いの洗剤ね！", createdAt: Date())
-    ]
+
+    var todo: Todo!
+
+    private var managedObjectContext: NSManagedObjectContext!
+    private var fetchedResultsController: NSFetchedResultsController<Chat>!
+    private var blocks: [() -> Void] = []
 
     lazy var textInputView: TextInputView! = {
         // swiftlint:disable:next force_cast
         let inputView = Bundle.main.loadNibNamed("TextInputView", owner: self, options: nil)?.first as! TextInputView
         inputView.messageSentCallback = { [weak self] message in
             guard let self = self else { return }
-            let indexPath = IndexPath(row: self.messageList.count, section: 0)
-            self.messageList.append(Chat(message: message, createdAt: Date()))
-            self.collectionView.insertItems(at: [indexPath])
+            let chat = Chat(context: self.managedObjectContext)
+            chat.message = message
+            chat.createdAt = Date()
+            self.todo.addToChats(chat)
+            try? self.managedObjectContext.save()
         }
         return inputView
     }()
@@ -44,6 +43,14 @@ class MessageCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Chat> = Chat.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "todo == %@", todo)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        try? fetchedResultsController.performFetch()
     }
 
     /*
@@ -64,17 +71,18 @@ class MessageCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return fetchedResultsController.sections!.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messageList.count
+        return fetchedResultsController.sections![section].numberOfObjects
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // swiftlint:disable:next force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCollectionViewCell
-        cell.configureCell(chat: messageList[indexPath.row])
+        let chat = fetchedResultsController.object(at: indexPath)
+        cell.configureCell(chat: chat)
         return cell
     }
 
@@ -111,7 +119,6 @@ class MessageCollectionViewController: UICollectionViewController {
 
 }
 
-
 extension MessageCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAt: indexPath) else {
@@ -130,5 +137,43 @@ extension MessageCollectionViewController: UICollectionViewDelegateFlowLayout {
             verticalFittingPriority: .fittingSizeLevel)
 
         return size
+    }
+}
+
+extension MessageCollectionViewController: NSFetchedResultsControllerDelegate {
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            blocks.append { [weak self] in
+                self?.collectionView.deleteItems(at: [indexPath!])
+            }
+        case .insert:
+            blocks.append { [weak self] in
+                self?.collectionView.insertItems(at: [newIndexPath!])
+            }
+        case .move:
+            blocks.append { [weak self] in
+                self?.collectionView.moveItem(at: indexPath!, to: newIndexPath!)
+            }
+        case .update:
+            blocks.append { [weak self] in
+                self?.collectionView.reloadItems(at: [indexPath!])
+            }
+        @unknown default:
+            break
+        }
+    }
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        blocks.removeAll()
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView.performBatchUpdates({
+            blocks.forEach { (block) in
+                block()
+            }
+        }, completion: nil)
     }
 }
