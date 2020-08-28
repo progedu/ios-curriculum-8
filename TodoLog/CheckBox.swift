@@ -23,4 +23,9 @@ final class CheckBox: UIControl {
         }
         image.draw(in: bounds)
     }
+
+    func toggle() {
+        self.checked = !checked
+        setNeedsDisplay()
+    }
 }

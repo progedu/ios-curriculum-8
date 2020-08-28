@@ -74,7 +74,10 @@ class TodoListTableViewController: UITableViewController {
         // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TodoTableViewCell
         let todo = fetchedResultsController.object(at: indexPath)
-        cell.configureCell(todo: todo)
+        cell.configureCell(todo: todo) { [weak self] isChecked in
+            todo.done = isChecked
+            try? self?.fetchedResultsController.managedObjectContext.save()
+        }
         return cell
     }
 
