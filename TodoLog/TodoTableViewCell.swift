@@ -12,10 +12,17 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet var title: UILabel!
     @IBOutlet var caption: UILabel!
     @IBOutlet var checkBox: CheckBox!
+    private var checkBoxModifiedCallback: ((Bool) -> Void)?
 
-    func configureCell(todo: Todo) {
+    @IBAction func checkBoxTapped(_ sender: CheckBox) {
+        checkBox.toggle()
+        checkBoxModifiedCallback?(sender.checked)
+    }
+
+    func configureCell(todo: Todo, checkBoxModifiedCallback: @escaping (Bool) -> Void) {
         title.text = todo.title
         caption.text = todo.caption
         checkBox.checked = todo.done
+        self.checkBoxModifiedCallback = checkBoxModifiedCallback
     }
 }
