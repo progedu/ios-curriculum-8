@@ -67,7 +67,7 @@
                                     <outlet property="caption" destination="Y1s-5U-aFB" id="rYA-Jq-RIa"/>
                                     <outlet property="checkBox" destination="8Td-fp-HaR" id="4Ut-8V-boT"/>
                                     <outlet property="title" destination="737-8d-107" id="uWA-sb-doG"/>
-                                    <segue destination="m4e-b8-mHz" kind="show" id="tAh-dN-iRN"/>
+                                    <segue destination="m4e-b8-mHz" kind="show" identifier="Message" id="tAh-dN-iRN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
