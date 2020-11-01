@@ -26,9 +26,32 @@ class TodoLogUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_新しいTodoを追加して完了できる() {
+        let app = XCUIApplication()
+        // キャンセルできるかを確認
+        app.navigationBars.buttons.firstMatch.tap()
+        app.alerts.buttons["キャンセル"].tap()
+
+        // Todoを追加する
+        let random = Int.random(in: 0..<10000)
+        app.navigationBars.buttons.firstMatch.tap()
+        app.alerts.textFields["InputTitle"].tap()
+        app.alerts.textFields["InputTitle"].typeText("タイトル\(random)")
+        app.alerts.textFields["InputLocationInfo"].tap()
+        app.alerts.textFields["InputLocationInfo"].typeText("場所")
+        app.alerts.buttons["登録"].tap()
+        XCTAssertEqual(app.cells.element(boundBy: 0).staticTexts["TodoTitle"].label, "タイトル\(random)")
+
+        // Todoを完了する
+        XCTAssertEqual(
+            app.cells.element(boundBy: 0).otherElements["TodoCheckBox"].label,
+            "Unchecked"
+        )
+        app.cells.element(boundBy: 0).otherElements["TodoCheckBox"].tap()
+        XCTAssertEqual(
+            app.cells.element(boundBy: 0).otherElements["TodoCheckBox"].label,
+            "Checked"
+        )
     }
 
 }
