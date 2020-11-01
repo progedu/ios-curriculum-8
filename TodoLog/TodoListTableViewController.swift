@@ -156,3 +156,36 @@ extension TodoListTableViewController: NSFetchedResultsControllerDelegate {
         tableView.endUpdates()
     }
 }
+
+class TodoListDataController {
+    private let managedObjectContext: NSManagedObjectContext
+    let fetchedResultsController: NSFetchedResultsController<Todo>
+
+    init(managedObjectContext: NSManagedObjectContext, delegate: NSFetchedResultsControllerDelegate) {
+        self.managedObjectContext = managedObjectContext
+        let fetchRequest: NSFetchRequest<Todo>  = Todo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = delegate
+    }
+
+    func performFetch() {
+        try? fetchedResultsController.performFetch()
+    }
+
+    func addTodo(title: String, locationInfo: String) {
+        let todo = Todo(context: managedObjectContext)
+        todo.title = title
+        todo.createdAt = Date()
+        todo.locationInfo = locationInfo
+        todo.done = false
+        try? managedObjectContext.save()
+    }
+
+    func modify(todo: Todo, done: Bool) {
+        todo.done = done
+        try? managedObjectContext.save()
+    }
+}
+
