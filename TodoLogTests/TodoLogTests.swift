@@ -19,9 +19,13 @@ class TodoLogTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_Todoのcaptionは時刻と場所を表示できる() {
+        let context = ((UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext)!
+
+        let todo = Todo(context: context)
+        todo.createdAt = Date() - 10
+        todo.locationInfo = "東京駅"
+        XCTAssertEqual(todo.caption, "10秒前・東京駅")
     }
 
     func testPerformanceExample() {

@@ -37,9 +37,11 @@ class TodoListTableViewController: UITableViewController {
         let alert = UIAlertController(title: "TODO登録", message: "TODO のタイトルと行う場所を入力してください。", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.placeholder = "タイトル(例: 買い物)"
+            textField.accessibilityIdentifier = "InputTitle"
         }
         alert.addTextField { textField in
             textField.placeholder = "場所(例: スーパー)"
+            textField.accessibilityIdentifier = "InputLocationInfo"
         }
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "登録", style: .default, handler: { [weak alert] _ in
