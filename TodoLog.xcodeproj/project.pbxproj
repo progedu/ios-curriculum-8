@@ -24,6 +24,7 @@
 		ED6DA2BB22B709DB00015564 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6DA2B922B709DB00015564 /* LaunchScreen.storyboard */; };
 		ED6DA2C622B709DB00015564 /* TodoLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DA2C522B709DB00015564 /* TodoLogTests.swift */; };
 		ED6DA2D122B709DB00015564 /* TodoLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DA2D022B709DB00015564 /* TodoLogUITests.swift */; };
+		ED763EB5261196D500DE6483 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED763EB4261196D500DE6483 /* SplitViewController.swift */; };
 		ED99C50F24A9A8CA002E6246 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED99C50D24A9A8CA002E6246 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		ED6DA2CC22B709DB00015564 /* TodoLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6DA2D022B709DB00015564 /* TodoLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLogUITests.swift; sourceTree = "<group>"; };
 		ED6DA2D222B709DB00015564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED763EB4261196D500DE6483 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		ED99C50E24A9A8CA002E6246 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F39DCBDE644D5C6D2FA2BD77 /* Pods-TodoLogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoLogTests.release.xcconfig"; path = "Target Support Files/Pods-TodoLogTests/Pods-TodoLogTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				ED6DA2B022B709D900015564 /* AppDelegate.swift */,
+				ED763EB4261196D500DE6483 /* SplitViewController.swift */,
 				1EA627C52393F4AE00432E24 /* TodoListTableViewController.swift */,
 				1EB417DF23CD3F750038872F /* MessageCollectionViewCell.swift */,
 				1EB417DB23CD33EE0038872F /* TodoTableViewCell.swift */,
@@ -417,6 +420,7 @@
 				ED6DA2B122B709DA00015564 /* AppDelegate.swift in Sources */,
 				1EB417DC23CD33EE0038872F /* TodoTableViewCell.swift in Sources */,
 				1EA627C42393F45900432E24 /* CheckBox.swift in Sources */,
+				ED763EB5261196D500DE6483 /* SplitViewController.swift in Sources */,
 				1EB417E023CD3F750038872F /* MessageCollectionViewCell.swift in Sources */,
 				ED99C50F24A9A8CA002E6246 /* Model.xcdatamodeld in Sources */,
 				1EA627C62393F4AE00432E24 /* TodoListTableViewController.swift in Sources */,

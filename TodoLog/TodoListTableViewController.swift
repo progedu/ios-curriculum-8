@@ -124,7 +124,7 @@ class TodoListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Message" {
             // swiftlint:disable:next force_cast
-            let destination = segue.destination as! MessageCollectionViewController
+            let destination = (segue.destination as! UINavigationController).viewControllers.first as! MessageCollectionViewController
             let selectedTodo = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
             destination.todo = selectedTodo
         }
